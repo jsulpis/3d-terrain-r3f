@@ -1,15 +1,21 @@
 import { useMemo } from "react";
 import { Vector3 } from "three";
+import useSettings from "../state/useSettings";
 
-export default function useRectangleMap(width = 150, depth = 150) {
+const TERRAIN_MAX_SIZE = 500;
+
+export default function useRectangleMap() {
+  const resolution = useSettings((s) => s.generation.Resolution);
+  const terrainSize = Math.max(TERRAIN_MAX_SIZE * resolution, 20);
+
   return useMemo(() => {
     const pts = [];
 
-    for (let x = -width / 2; x < width / 2; x++) {
-      for (let y = -depth / 2; y < depth / 2; y++) {
+    for (let x = -terrainSize / 2; x < terrainSize / 2; x++) {
+      for (let y = -terrainSize / 2; y < terrainSize / 2; y++) {
         pts.push(new Vector3(x, y, 0));
       }
     }
     return pts;
-  }, [width, depth]);
+  }, [resolution]);
 }

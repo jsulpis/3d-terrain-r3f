@@ -8,7 +8,7 @@ export default function GUI() {
   const setColor = useSettings((s) => s.setColor);
   const setGeneration = useSettings((s) => s.setGeneration);
 
-  useControls("Color", () => {
+  useControls("Colors", () => {
     const res = {} as any;
     Object.keys(colors).forEach((color) => {
       res[color] = {
@@ -18,7 +18,7 @@ export default function GUI() {
         onChange: (v: number) => setColorValue(color, v),
       };
 
-      res[color + " Color"] = {
+      res[color] = {
         value: colors[color].color,
         onChange: (v: string) => setColor(color, v),
       };
@@ -33,12 +33,18 @@ export default function GUI() {
       (param) => {
         res[param] = {
           value: generation[param],
-          min: 0,
+          min: 0.01,
           max: 1,
           onChange: (v: number) => setGeneration(param, v),
         };
       }
     );
+    res["Sea Level"] = {
+      value: colors.Water.value,
+      min: 0,
+      max: 1,
+      onChange: (v: number) => setColorValue("Water", v),
+    };
 
     return res;
   });

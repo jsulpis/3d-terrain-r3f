@@ -14,6 +14,7 @@ export type SettingsState = {
     Scale: number;
     Detail: number;
     Fuzzyness: number;
+    Resolution: number;
   };
 };
 
@@ -30,33 +31,33 @@ export type Settings = SettingsState & SettingsActions;
 
 const initialState: SettingsState = {
   colors: {
-    Water: {
-      value: 0.21,
-      color: "#00a9ff",
-    },
-    Shore: {
-      value: 0.01,
-      color: "#ffd68f",
-    },
-    Beach: {
-      value: 0.04,
-      color: "#efb28f",
-    },
-    Shrub: {
-      value: 0.1,
-      color: "#9ea667",
-    },
-    Forest: {
-      value: 0.29,
-      color: "#586647",
+    Snow: {
+      value: 0.6,
+      color: "#9aa7ad",
     },
     Stone: {
       value: 0.36,
       color: "#656565",
     },
-    Snow: {
-      value: 0.6,
-      color: "#9aa7ad",
+    Forest: {
+      value: 0.29,
+      color: "#586647",
+    },
+    Shrub: {
+      value: 0.1,
+      color: "#9ea667",
+    },
+    Beach: {
+      value: 0.04,
+      color: "#efb28f",
+    },
+    Shore: {
+      value: 0.01,
+      color: "#ffd68f",
+    },
+    Water: {
+      value: 0.21,
+      color: "#00a9ff",
     },
   },
   generation: {
@@ -65,6 +66,7 @@ const initialState: SettingsState = {
     Scale: 0.3,
     Detail: 0.5,
     Fuzzyness: 0.2,
+    Resolution: 0.5,
   },
 };
 

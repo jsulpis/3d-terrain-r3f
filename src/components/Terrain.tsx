@@ -22,7 +22,7 @@ export default function Terrain({}) {
     });
 
     mesh.instanceMatrix.needsUpdate = true;
-    mesh.instanceColor.needsUpdate = true;
+    mesh.instanceColor!.needsUpdate = true;
   }, [points]);
 
   return (
