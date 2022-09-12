@@ -1,9 +1,10 @@
 import { useMemo } from "react";
-import { MathUtils, Vector2, Vector3 } from "three";
+import { MathUtils, Vector2 } from "three";
 import { FBM } from "three-noise";
+import { Coordinates } from "../block.types";
 import useSettings from "../state/useSettings";
 
-export default function useFBM() {
+export default function useFbmNoise() {
   const generation = useSettings((s) => s.generation);
 
   const fbm = useMemo(
@@ -11,16 +12,15 @@ export default function useFBM() {
       new FBM({
         seed: generation.Seed,
         lacunarity: generation.Detail * 4,
-        persistance: generation.Fuzzyness * 2,
-        // redistribution: generation.Contrast * 2,
+        persistance: generation.Fuzzyness * 2
       }),
     [generation]
   );
 
-  return (vec3: Vector3) =>
+  return ({ x, y }: Coordinates) =>
     Math.pow(
       MathUtils.mapLinear(
-        fbm.get2(new Vector2(vec3.x, vec3.y)),
+        fbm.get2(new Vector2(x, y)),
         -1, //
         1,
         0,

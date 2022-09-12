@@ -21,10 +21,7 @@ export type SettingsState = {
 export type SettingsActions = {
   setColorValue: (key: string, value: number) => void;
   setColor: (key: string, color: string) => void;
-  setGeneration: (
-    key: keyof SettingsState["generation"],
-    value: number
-  ) => void;
+  setGeneration: (key: keyof SettingsState["generation"], value: number) => void;
 };
 
 export type Settings = SettingsState & SettingsActions;
@@ -33,32 +30,32 @@ const initialState: SettingsState = {
   colors: {
     Snow: {
       value: 0.6,
-      color: "#9aa7ad",
+      color: "#9aa7ad"
     },
     Stone: {
       value: 0.36,
-      color: "#656565",
+      color: "#656565"
     },
     Forest: {
       value: 0.29,
-      color: "#586647",
+      color: "#586647"
     },
     Shrub: {
       value: 0.1,
-      color: "#9ea667",
+      color: "#9ea667"
     },
     Beach: {
       value: 0.04,
-      color: "#efb28f",
+      color: "#efb28f"
     },
     Shore: {
       value: 0.01,
-      color: "#ffd68f",
+      color: "#ffd68f"
     },
     Water: {
-      value: 0.21,
-      color: "#00a9ff",
-    },
+      value: 0.42,
+      color: "#00a9ff"
+    }
   },
   generation: {
     Seed: Math.random(),
@@ -66,8 +63,8 @@ const initialState: SettingsState = {
     Scale: 0.3,
     Detail: 0.5,
     Fuzzyness: 0.2,
-    Resolution: 0.5,
-  },
+    Resolution: 0.3
+  }
 };
 
 export default create<Settings, [["zustand/immer", never]]>(
@@ -84,6 +81,6 @@ export default create<Settings, [["zustand/immer", never]]>(
     setGeneration: (key, value) =>
       set((state) => {
         state.generation[key] = value;
-      }),
+      })
   }))
 );

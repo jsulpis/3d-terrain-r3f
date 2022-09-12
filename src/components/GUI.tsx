@@ -15,12 +15,12 @@ export default function GUI() {
         value: colors[color].value,
         min: 0,
         max: 1,
-        onChange: (v: number) => setColorValue(color, v),
+        onChange: (v: number) => setColorValue(color, v)
       };
 
       res[color] = {
         value: colors[color].color,
-        onChange: (v: string) => setColor(color, v),
+        onChange: (v: string) => setColor(color, v)
       };
     });
 
@@ -29,28 +29,26 @@ export default function GUI() {
 
   const [_, set] = useControls("Generation", () => {
     const res = {} as any;
-    (Object.keys(generation) as Array<keyof Settings["generation"]>).forEach(
-      (param) => {
-        res[param] = {
-          value: generation[param],
-          min: 0.01,
-          max: 1,
-          onChange: (v: number) => setGeneration(param, v),
-        };
-      }
-    );
+    (Object.keys(generation) as Array<keyof Settings["generation"]>).forEach((param) => {
+      res[param] = {
+        value: generation[param],
+        min: 0.01,
+        max: 1,
+        onChange: (v: number) => setGeneration(param, v)
+      };
+    });
     res["Sea Level"] = {
       value: colors.Water.value,
       min: 0,
       max: 1,
-      onChange: (v: number) => setColorValue("Water", v),
+      onChange: (v: number) => setColorValue("Water", v / 2)
     };
 
     return res;
   });
 
   useControls({
-    Regenerate: button(() => set({ Seed: Math.random() })),
+    Regenerate: button(() => set({ Seed: Math.random() }))
   });
 
   return <Leva collapsed />;

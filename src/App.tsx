@@ -10,11 +10,7 @@ export default function App() {
   return (
     <>
       <GUI />
-      <Canvas
-        shadows
-        dpr={[1, 2]}
-        camera={{ position: [5, 6, 5], near: 0.1, far: 15 }}
-      >
+      <Canvas shadows dpr={[1, 2]} camera={{ position: [5, 6, 5], near: 0.1, far: 15 }}>
         <Gizmo />
         <Lights />
         <OrbitControls autoRotate autoRotateSpeed={0.2} enablePan={false} />

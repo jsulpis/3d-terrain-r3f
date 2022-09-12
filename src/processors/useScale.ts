@@ -1,16 +1,16 @@
 import { useMemo } from "react";
-import { Vector3 } from "three";
+import { Coordinates } from "../block.types";
 
 const MAP_SIZE = 8;
 
 /**
- * Find the scale to apply to the input vectors so that they are contained
+ * Find the scale to apply to the input coordinates so that they are contained
  * in a fixed volume.
  *
- * @param points list of 3D vectors
- * @returns the scale to apply to the vectors
+ * @param points list of 3D coordinates
+ * @returns the scale to apply to the coordinates
  */
-export function useScale(points: Vector3[]) {
+export function useScale(points: Coordinates[]): number {
   return useMemo(() => {
     let minX = Infinity,
       maxX = -Infinity,
