@@ -18,6 +18,12 @@ export type DisplayBlock = Coordinates & {
   color: string;
 };
 
-export type DataBlockProvider = () => DataBlock[];
+export type Terrain = {
+  dataBlocks: DataBlock[];
+  xmin: number;
+  xmax: number;
+  ymin: number;
+  ymax: number;
+};
 
 export type DataBlockProcessor = (dataBlock: DataBlock) => DisplayBlock;

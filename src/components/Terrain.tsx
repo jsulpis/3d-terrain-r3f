@@ -1,15 +1,15 @@
 import { useEffect, useRef } from "react";
 import { Object3D, InstancedMesh, Color } from "three";
-import useProceduralDataBlocks from "../providers/useProceduralDataBlocks";
-import { useScale } from "../processors/useScale";
-import createDataBlockProcessor from "../processors/blockProcessor";
+import useProceduralTerrain from "../generators/useProceduralTerrain";
+import useColorDisplay from "../processors/useColorDisplay";
+import useScale from "../processors/useScale";
 
 const emptyObject = new Object3D();
 
 export default function Terrain() {
-  const dataBlocks = useProceduralDataBlocks();
-  const scale = useScale(dataBlocks);
-  const processBlock = createDataBlockProcessor(dataBlocks);
+  const { dataBlocks, xmin, xmax, ymin, ymax } = useProceduralTerrain();
+  const scale = useScale(xmin, xmax, ymin, ymax);
+  const processBlock = useColorDisplay(scale);
 
   const ref = useRef<InstancedMesh>(null);
 
@@ -29,7 +29,7 @@ export default function Terrain() {
 
     mesh.instanceMatrix.needsUpdate = true;
     mesh.instanceColor!.needsUpdate = true;
-  }, [dataBlocks]);
+  }, [dataBlocks, processBlock]);
 
   return (
     <group>

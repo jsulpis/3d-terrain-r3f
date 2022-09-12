@@ -5,24 +5,24 @@ export default function useColor() {
   const colors = useSettings((s) => s.colors);
 
   return (height: number) => {
-    const color = (() => {
+    const assetType = (() => {
       if (height <= colors.Water.value) {
-        return new Color(colors.Water.color);
+        return "Water";
       } else if (height <= colors.Water.value + colors.Shore.value) {
-        return new Color(colors.Shore.color);
+        return "Shore";
       } else if (height <= colors.Water.value + colors.Beach.value) {
-        return new Color(colors.Beach.color);
+        return "Beach";
       } else if (height <= colors.Water.value + colors.Shrub.value) {
-        return new Color(colors.Shrub.color);
+        return "Shrub";
       } else if (height <= colors.Water.value + colors.Forest.value) {
-        return new Color(colors.Forest.color);
+        return "Forest";
       } else if (height <= colors.Water.value + colors.Stone.value) {
-        return new Color(colors.Stone.color);
+        return "Stone";
       } else {
-        return new Color(colors.Snow.color);
+        return "Snow";
       }
     })();
-
+    const color = new Color(colors[assetType].color);
     const hsl = color.getHSL({ h: 0, s: 1, l: 1 });
 
     color.setHSL(

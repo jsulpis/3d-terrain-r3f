@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { MathUtils, Vector2 } from "three";
 import { FBM } from "three-noise";
 import { Coordinates } from "../block.types";
@@ -17,15 +17,18 @@ export default function useFbmNoise() {
     [generation]
   );
 
-  return ({ x, y }: Coordinates) =>
-    Math.pow(
-      MathUtils.mapLinear(
-        fbm.get2(new Vector2(x, y)),
-        -1, //
-        1,
-        0,
-        1
+  return useCallback(
+    ({ x, y }: Coordinates) =>
+      Math.pow(
+        MathUtils.mapLinear(
+          fbm.get2(new Vector2(x, y)),
+          -1, //
+          1,
+          0,
+          1
+        ),
+        2
       ),
-      2
-    );
+    [fbm]
+  );
 }

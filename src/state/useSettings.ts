@@ -63,7 +63,7 @@ const initialState: SettingsState = {
     Scale: 0.3,
     Detail: 0.5,
     Fuzzyness: 0.2,
-    Resolution: 0.3
+    Resolution: 0.6
   }
 };
 
