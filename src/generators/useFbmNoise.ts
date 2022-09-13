@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from "react";
 import { MathUtils, Vector2 } from "three";
-import { FBM } from "three-noise";
+import { FBM } from "../lib/three-noise.module";
 import { Coordinates } from "../block.types";
 import { useSettings } from "../state/useSettings";
 

@@ -1,9 +1,9 @@
 import { useRef } from "react";
 import { useHelper } from "@react-three/drei";
-import { DirectionalLightHelper } from "three";
+import { DirectionalLight, DirectionalLightHelper } from "three";
 
 export function Lights() {
-  const ref = useRef();
+  const ref = useRef<DirectionalLight>(null);
 
   // useHelper(ref, DirectionalLightHelper);
 
