@@ -3,6 +3,7 @@ import { Object3D, InstancedMesh, Color } from "three";
 import useProceduralTerrain from "../generators/useProceduralTerrain";
 import useDisplay from "../processors/useDisplay";
 import useScale from "../processors/useScale";
+import { TerrainStats } from "./TerrainStats";
 
 const emptyObject = new Object3D();
 
@@ -34,9 +35,12 @@ export default function Terrain() {
   }, [dataBlocks, transformBlockForDisplay]);
 
   return (
-    <instancedMesh castShadow receiveShadow ref={ref} args={[, , dataBlocks.length]}>
-      <boxGeometry />
-      <meshPhongMaterial />
-    </instancedMesh>
+    <>
+      <instancedMesh castShadow receiveShadow ref={ref} args={[, , dataBlocks.length]}>
+        <boxGeometry />
+        <meshPhongMaterial />
+      </instancedMesh>
+      <TerrainStats blockCount={dataBlocks.length} />
+    </>
   );
 }
