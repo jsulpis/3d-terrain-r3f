@@ -4,9 +4,11 @@ import useSettings, { Settings } from "../state/useSettings";
 export default function GUI() {
   const colors = useSettings((s) => s.colors);
   const generation = useSettings((s) => s.generation);
+  const display = useSettings((s) => s.display);
   const setColorValue = useSettings((s) => s.setColorValue);
   const setColor = useSettings((s) => s.setColor);
   const setGeneration = useSettings((s) => s.setGeneration);
+  const setDisplay = useSettings((s) => s.setDisplay);
 
   useControls("Colors", () => {
     const res = {} as any;
@@ -26,6 +28,13 @@ export default function GUI() {
 
     return res;
   });
+
+  useControls("Display", () => ({
+    HeightMap: {
+      value: display === "height",
+      onChange: (v: boolean) => setDisplay(v ? "height" : "color")
+    }
+  }));
 
   const [_, set] = useControls("Generation", () => {
     const res = {} as any;

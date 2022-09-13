@@ -4,6 +4,8 @@ export type Coordinates = {
   z: number;
 };
 
+export type HexaColor = `#${number | string}`;
+
 export type DataBlock = Coordinates & {
   /**
    * Any data associated with the block
@@ -15,7 +17,7 @@ export type DisplayBlock = Coordinates & {
   /**
    * The color in which the block should be displayed
    */
-  color: string;
+  color: HexaColor;
 };
 
 export type Terrain = {
@@ -25,5 +27,3 @@ export type Terrain = {
   ymin: number;
   ymax: number;
 };
-
-export type DataBlockProcessor = (dataBlock: DataBlock) => DisplayBlock;

@@ -1,17 +1,18 @@
 import { useEffect, useRef } from "react";
 import { Object3D, InstancedMesh, Color } from "three";
 import useProceduralTerrain from "../generators/useProceduralTerrain";
-import useColorDisplay from "../processors/useColorDisplay";
+import useDisplay from "../processors/useDisplay";
 import useScale from "../processors/useScale";
 
 const emptyObject = new Object3D();
 
 export default function Terrain() {
+  const ref = useRef<InstancedMesh>(null);
+
   const { dataBlocks, xmin, xmax, ymin, ymax } = useProceduralTerrain();
   const scale = useScale(xmin, xmax, ymin, ymax);
-  const processBlock = useColorDisplay(scale);
 
-  const ref = useRef<InstancedMesh>(null);
+  const processBlock = useDisplay(scale);
 
   useEffect(() => {
     const mesh = ref.current;

@@ -8,6 +8,7 @@ export type SettingsState = {
       color: string;
     };
   };
+  display: "color" | "height";
   generation: {
     Seed: number;
     Height: number;
@@ -21,6 +22,7 @@ export type SettingsState = {
 export type SettingsActions = {
   setColorValue: (key: string, value: number) => void;
   setColor: (key: string, color: string) => void;
+  setDisplay: (value: SettingsState["display"]) => void;
   setGeneration: (key: keyof SettingsState["generation"], value: number) => void;
 };
 
@@ -57,13 +59,14 @@ const initialState: SettingsState = {
       color: "#00a9ff"
     }
   },
+  display: "color",
   generation: {
     Seed: Math.random(),
     Height: 1,
     Scale: 0.3,
     Detail: 0.5,
     Fuzzyness: 0.2,
-    Resolution: 0.6
+    Resolution: 0.3
   }
 };
 
@@ -77,6 +80,10 @@ export default create<Settings, [["zustand/immer", never]]>(
     setColor: (key, color) =>
       set((state) => {
         state.colors[key].color = color;
+      }),
+    setDisplay: (value) =>
+      set((state) => {
+        state.display = value;
       }),
     setGeneration: (key, value) =>
       set((state) => {
