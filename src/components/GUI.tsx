@@ -1,7 +1,7 @@
 import { button, Leva, useControls } from "leva";
-import useSettings, { Settings } from "../state/useSettings";
+import { useSettings, Settings } from "../state/useSettings";
 
-export default function GUI() {
+export function GUI() {
   const colors = useSettings((s) => s.colors);
   const generation = useSettings((s) => s.generation);
   const display = useSettings((s) => s.display);

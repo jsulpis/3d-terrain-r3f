@@ -4,7 +4,7 @@ import { Coordinates } from "../block.types";
 /**
  * Find the boundaries of a terrain made of blocks of the given coordinates
  */
-export default function useDimensions(points: Coordinates[]) {
+export function useDimensions(points: Coordinates[]) {
   return useMemo(() => {
     let xmin = Infinity,
       xmax = -Infinity,

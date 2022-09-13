@@ -1,12 +1,12 @@
 import { useMemo } from "react";
 import { Terrain } from "../block.types";
-import useDimensions from "../processors/useDimensions";
-import useScale from "../processors/useScale";
-import useSettings from "../state/useSettings";
-import useFbmNoise from "./useFbmNoise";
-import useSquareSurface from "./useSquareSurface";
+import { useDimensions } from "../processors/useDimensions";
+import { useScale } from "../processors/useScale";
+import { useSettings } from "../state/useSettings";
+import { useFbmNoise } from "./useFbmNoise";
+import { useSquareSurface } from "./useSquareSurface";
 
-export default function useProceduralTerrain(): Terrain {
+export function useProceduralTerrain(): Terrain {
   const surface = useSquareSurface();
   const { xmin, xmax, ymin, ymax } = useDimensions(surface);
   const scale = useScale(xmin, xmax, ymin, ymax);

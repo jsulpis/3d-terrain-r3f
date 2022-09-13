@@ -70,7 +70,7 @@ const initialState: SettingsState = {
   }
 };
 
-export default create<Settings, [["zustand/immer", never]]>(
+export const useSettings = create<Settings, [["zustand/immer", never]]>(
   immer((set) => ({
     ...initialState,
     setColorValue: (key, value) =>

@@ -1,10 +1,10 @@
 import { Vector3 } from "three";
 import { DataBlock, DisplayBlock } from "../block.types";
-import useSettings from "../state/useSettings";
-import useNaturalColor from "./useColor";
-import useHeightMap from "./useHeightMap";
+import { useSettings } from "../state/useSettings";
+import { useNaturalColor } from "./useColor";
+import { useHeightMap } from "./useHeightMap";
 
-export default function useDisplay(scale: number) {
+export function useDisplay(scale: number) {
   const getNaturalColor = useNaturalColor();
   const getHeightMapColor = useHeightMap();
 

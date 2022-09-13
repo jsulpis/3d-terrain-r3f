@@ -6,7 +6,7 @@ const MAP_SIZE = 8;
  * Find the scale to apply to a terrain of given boundaries
  * so that it is contained in a fixed volume.
  */
-export default function useScale(xmin: number, xmax: number, ymin: number, ymax: number) {
+export function useScale(xmin: number, xmax: number, ymin: number, ymax: number) {
   return useMemo(() => {
     const sideX = xmax - xmin;
     const sideY = ymax - ymin;

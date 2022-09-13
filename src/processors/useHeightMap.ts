@@ -1,6 +1,6 @@
 import { Color } from "three";
 
-export default function useHeightMap() {
+export function useHeightMap() {
   const floorColor = new Color().setHSL(0.75, 1, 0.5);
   const ceilingColor = new Color().setHSL(0, 1, 0.5);
   const zmin = 0.05;

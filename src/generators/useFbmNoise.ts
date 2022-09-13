@@ -2,9 +2,9 @@ import { useCallback, useMemo } from "react";
 import { MathUtils, Vector2 } from "three";
 import { FBM } from "three-noise";
 import { Coordinates } from "../block.types";
-import useSettings from "../state/useSettings";
+import { useSettings } from "../state/useSettings";
 
-export default function useFbmNoise() {
+export function useFbmNoise() {
   const generation = useSettings((s) => s.generation);
 
   const fbm = useMemo(

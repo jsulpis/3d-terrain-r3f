@@ -1,13 +1,13 @@
 import { useEffect, useRef } from "react";
-import { Object3D, InstancedMesh, Color } from "three";
-import useProceduralTerrain from "../generators/useProceduralTerrain";
-import useDisplay from "../processors/useDisplay";
-import useScale from "../processors/useScale";
+import { Object3D, InstancedMesh } from "three";
+import { useProceduralTerrain } from "../generators/useProceduralTerrain";
+import { useDisplay } from "../processors/useDisplay";
+import { useScale } from "../processors/useScale";
 import { TerrainStats } from "./TerrainStats";
 
 const emptyObject = new Object3D();
 
-export default function Terrain() {
+export function Terrain() {
   const ref = useRef<InstancedMesh>(null);
 
   const { dataBlocks, xmin, xmax, ymin, ymax } = useProceduralTerrain();

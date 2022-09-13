@@ -1,7 +1,7 @@
 import { Color, MathUtils } from "three";
-import useSettings from "../state/useSettings";
+import { useSettings } from "../state/useSettings";
 
-export default function useNaturalColor() {
+export function useNaturalColor() {
   const colors = useSettings((s) => s.colors);
 
   return (height: number): Color => {
