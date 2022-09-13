@@ -1,10 +1,10 @@
+import { Color, Vector3 } from "three";
+
 export type Coordinates = {
   x: number;
   y: number;
   z: number;
 };
-
-export type HexaColor = `#${number | string}`;
 
 export type DataBlock = Coordinates & {
   /**
@@ -13,11 +13,9 @@ export type DataBlock = Coordinates & {
   [key: string]: number;
 };
 
-export type DisplayBlock = Coordinates & {
-  /**
-   * The color in which the block should be displayed
-   */
-  color: HexaColor;
+export type DisplayBlock = {
+  position: Vector3;
+  color: Color;
 };
 
 export type Terrain = {

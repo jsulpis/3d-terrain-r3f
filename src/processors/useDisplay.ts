@@ -1,3 +1,4 @@
+import { Vector3 } from "three";
 import { DataBlock, DisplayBlock } from "../block.types";
 import useSettings from "../state/useSettings";
 import useNaturalColor from "./useColor";
@@ -11,9 +12,7 @@ export default function useDisplay(scale: number) {
   const getColor = display === "color" ? getNaturalColor : getHeightMapColor;
 
   return ({ x, y, z, height }: DataBlock): DisplayBlock => ({
-    x: x * scale,
-    y: y * scale,
-    z: z * scale,
+    position: new Vector3(x, y, z).multiplyScalar(scale),
     color: getColor(height * scale)
   });
 }

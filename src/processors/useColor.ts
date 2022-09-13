@@ -1,11 +1,10 @@
 import { Color, MathUtils } from "three";
-import { HexaColor } from "../block.types";
 import useSettings from "../state/useSettings";
 
 export default function useNaturalColor() {
   const colors = useSettings((s) => s.colors);
 
-  return (height: number): HexaColor => {
+  return (height: number): Color => {
     const assetType = (() => {
       if (height <= colors.Water.value) {
         return "Water";
@@ -41,6 +40,6 @@ export default function useNaturalColor() {
           : 1)
     );
 
-    return `#${color.getHexString()}`;
+    return color;
   };
 }
