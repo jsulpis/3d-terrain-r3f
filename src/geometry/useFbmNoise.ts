@@ -1,7 +1,6 @@
 import { useCallback, useMemo } from "react";
 import { MathUtils, Vector2 } from "three";
 import { FBM } from "../lib/three-noise.module";
-import { Coordinates } from "../block.types";
 import { useSettings } from "../state/useSettings";
 
 export function useFbmNoise() {
@@ -18,10 +17,10 @@ export function useFbmNoise() {
   );
 
   return useCallback(
-    ({ x, y }: Coordinates) =>
+    (vector: Vector2) =>
       Math.pow(
         MathUtils.mapLinear(
-          fbm.get2(new Vector2(x, y)),
+          fbm.get2(vector),
           -1, //
           1,
           0,

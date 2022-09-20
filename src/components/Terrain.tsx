@@ -1,29 +1,25 @@
 import { useEffect, useRef } from "react";
 import { Object3D, InstancedMesh } from "three";
-import { useProceduralTerrain } from "../generators/useProceduralTerrain";
-import { useDisplay } from "../processors/useDisplay";
-import { useScale } from "../processors/useScale";
+import { useProceduralTerrain } from "../geometry/useProceduralTerrain";
 import { TerrainStats } from "./TerrainStats";
+import { useDisplay } from "../colors/useDisplay";
 
 const emptyObject = new Object3D();
 
 export function Terrain() {
   const ref = useRef<InstancedMesh>(null);
 
-  const { dataBlocks, xmin, xmax, ymin, ymax } = useProceduralTerrain();
-  const scale = useScale(xmin, xmax, ymin, ymax);
-  const transformBlockForDisplay = useDisplay(scale);
-
-  emptyObject.scale.set(scale, scale, scale);
+  const { dataBlocks, scale } = useProceduralTerrain();
+  const getColor = useDisplay();
 
   useEffect(() => {
     const mesh = ref.current;
     if (!mesh) return;
 
-    dataBlocks.forEach((dataBlock, i) => {
-      const { position, color } = transformBlockForDisplay(dataBlock);
+    dataBlocks.forEach(({ x, y, z, height }, i) => {
+      const color = getColor(height);
 
-      emptyObject.position.copy(position);
+      emptyObject.position.set(x, y, z);
       emptyObject.updateMatrix();
 
       mesh.setMatrixAt?.(i, emptyObject.matrix);
@@ -32,14 +28,17 @@ export function Terrain() {
 
     mesh.instanceMatrix.needsUpdate = true;
     mesh.instanceColor!.needsUpdate = true;
-  }, [dataBlocks, transformBlockForDisplay]);
+  }, [dataBlocks, getColor]);
 
   return (
     <>
-      <instancedMesh castShadow receiveShadow ref={ref} args={[, , dataBlocks.length]}>
-        <boxGeometry />
-        <meshPhongMaterial />
-      </instancedMesh>
+      <group rotation-x={-Math.PI / 2} scale={scale}>
+        <instancedMesh castShadow receiveShadow ref={ref} args={[, , dataBlocks.length]}>
+          <boxGeometry />
+          <meshPhongMaterial />
+        </instancedMesh>
+      </group>
+
       <TerrainStats blockCount={dataBlocks.length} />
     </>
   );

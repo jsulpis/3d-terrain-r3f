@@ -10,13 +10,21 @@ export default function App() {
   return (
     <>
       <GUI />
-      <Canvas shadows dpr={[1, 2]} camera={{ position: [5, 6, 5], near: 0.1, far: 15 }}>
+      <Canvas
+        shadows
+        dpr={[1, 2]}
+        camera={{ position: [7, 5, 7], near: 0.1, far: 20, fov: 50 }}
+      >
         <Gizmo />
         <Lights />
-        <OrbitControls autoRotate autoRotateSpeed={0.2} enablePan={false} />
-        <group rotation-x={-Math.PI / 2}>
-          <Terrain />
-        </group>
+        <OrbitControls
+          autoRotate
+          autoRotateSpeed={0.2}
+          enablePan={false}
+          minDistance={3}
+          maxDistance={12}
+        />
+        <Terrain />
       </Canvas>
     </>
   );
